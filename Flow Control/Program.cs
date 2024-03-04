@@ -134,7 +134,7 @@
                     }
                     else if (age > 5)
                     {
-                        Console.WriteLine($"ditt pris är {price} kr");
+                        Console.WriteLine($"ditt pris är barnpris och det kostar {price} kr");
                     }
                     else
                     {
