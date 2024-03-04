@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.IO;
-
-namespace Flow_Control
+﻿namespace Flow_Control
 {
     internal class Program
     {
@@ -14,7 +11,9 @@ namespace Flow_Control
             {
                 Console.WriteLine("1. Köp Biljett" +
                      "\n2. Lägg till sällskap" +
-                     "\n0. Stäng ner programet"); 
+                     "\n3. Repitera" +
+                     "\n4. Splitta 3 ord" +
+                     "\n0. Stäng ner programet");
                 string input = Console.ReadLine()!;
                 if (input != null)
                 {
@@ -31,6 +30,12 @@ namespace Flow_Control
                         break;
                     case "2":
                         Sallskap();
+                        break;
+                    case "3":
+                        Repeat();
+                        break;
+                    case "4":
+                        Split();
                         break;
 
                     default:
@@ -54,9 +59,9 @@ namespace Flow_Control
 
                         if (int.TryParse(ageInput, out age))
                         {
-                            Model logic = new Model(age, 0,0);
+                            Model logic = new Model(age, 0, 0);
                             TicketPrice(logic);
-                            Messages(logic); 
+                            Messages(logic);
                         }
                         else
                         {
@@ -77,16 +82,16 @@ namespace Flow_Control
                 } while (fortsattkop);
             }
 
-                
-           
+
             static void TicketPrice(Model logic)
             {
-                int age = logic.Age;
-                int price;
+                var age = logic.Age;
+                var price = logic.Price;
+
 
                 if (age <= 20)
                 {
-                   
+
                     if (age == 20)
                     {
                         price = 80;
@@ -113,8 +118,8 @@ namespace Flow_Control
 
             static void Messages(Model logic)
             {
-                int age = logic.Age;
-                int price = logic.Price;
+                var age = logic.Age;
+                var price = logic.Price;
                 if (age <= 20)
                 {
                     Console.WriteLine($"din ålder är {age} år &");
@@ -160,7 +165,7 @@ namespace Flow_Control
                         else
                         {
                             Console.WriteLine("Felaktig ålder. Ange en siffra.");
-                            i--; 
+                            i--;
                         }
                     }
 
@@ -178,7 +183,44 @@ namespace Flow_Control
                     Console.WriteLine("Felaktigt antal. Ange en siffra.");
                 }
             }
+            static void Repeat()
+            {
+                Console.WriteLine("Skriv in det du vill repitera x 10:");
+                string Input = Console.ReadLine()!;
+                Console.WriteLine("\nAnswer:");
+                if (!string.IsNullOrWhiteSpace(Input))
+                {
+                    for (int i = 1; i <= 10; i++)
+                    {
+                        Console.Write($"{i}.{Input} ");
+                    }
+                    Console.WriteLine("\n");
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+            }
 
+
+
+
+            static void Split()
+            {
+                Console.WriteLine("skriv in en mening med 3ord antingen med mellanslag eller med , tecken");
+                string input = Console.ReadLine()!;
+                string[] seperators = { " ", "," };
+                string[] words = input.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
+
+                for (int i = 0; i < words.Length; i++)
+                {
+                    if ((i + 1) % 3 == 0) // Kontrollera om det är ett tredje ord
+                    {
+                        Console.WriteLine($"<{words[i]}>");
+                    }
+                }
+            }
         }
     }
 }
+
