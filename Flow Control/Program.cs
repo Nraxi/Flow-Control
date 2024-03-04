@@ -132,13 +132,13 @@
                     {
                         Console.WriteLine($"ditt pris är ungdomspris {price} kr ");
                     }
-                    else if (age > 5)
+                    else if (age < 5)
                     {
                         Console.WriteLine($"ditt pris är barnpris och det kostar {price} kr");
                     }
                     else
                     {
-                        Console.WriteLine($"ditt pris är {price} kr och du får kolla på filmen gratis");
+                        Console.WriteLine($"ditt pris är {price} kr");
                     }
                 }
                 else if (age >= 65 && age < 100)
