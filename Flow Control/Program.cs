@@ -141,13 +141,13 @@
                         Console.WriteLine($"ditt pris är {price} kr och du får kolla på filmen gratis");
                     }
                 }
-                else if (age >= 65)
+                else if (age >= 65 && age < 100)
                 {
                     Console.WriteLine($"Grattis du är pensionär och får betala {price} kr");
                 }
-                else if (age > 100)
+                else if (age >= 100)
                 {
-                    Console.WriteLine($"Grattis du är pensionär och får betala {price} kr");
+                    Console.WriteLine($"Wow du är {age} år klart du får gå in för {price} kr");
                 }
                 else
                 {
