@@ -160,31 +160,41 @@
                 Console.WriteLine("Ange antalet personer i sällskapet:");
                 string partySizeInput = Console.ReadLine()!;
                 int partySize;
+
+                // Försöker konvertera inmatningen till en integer
                 if (int.TryParse(partySizeInput, out partySize))
                 {
+                    // Loopa över varje person i sällskapet
                     for (int i = 0; i < partySize; i++)
-                    {
+                    {   
+                        // frågar användare efter ålder för varje person
                         Console.WriteLine($"Ange ålder för person {i + 1}:");
                         string ageInput = Console.ReadLine()!;
+
+
+                        // Försöker konvertera inmatad ålder till en integer.
                         if (int.TryParse(ageInput, out int age))
                         {
+
+                            // Skapar ett personobjekt med angiven ålder och lägger till det i listan för sällskapet.
                             Model person = new Model(age, 0, 0);
                             party.Add(person);
                         }
                         else
                         {
+                            // Om inmatningen inte är en giltig ålder, meddela användaren och återgå till föregående steg i loopen.
                             Console.WriteLine("Felaktig ålder. Ange en siffra.");
                             i--;
                         }
                     }
-
+                    // Beräkna den totala summan för biljettkostnaderna för hela sällskapet.
                     int totalSum = 0;
                     foreach (var person in party)
                     {
-                        TicketPrice(person);
-                        totalSum += person.Price;
+                        TicketPrice(person); // Beräkna biljettpriset för varje person.
+                        totalSum += person.Price; // Lägg till personens biljettpris till den totala summan.
                     }
-
+                    // Skriv ut den totala summan för biljettpriserna för hela sällskapet.
                     Console.WriteLine($"Den totala summan för hela sällskapet på {partySize} personer är: {totalSum} kr");
                 }
                 else
@@ -216,16 +226,19 @@
 
             static void Split()
             {
-                Console.WriteLine("skriv in en mening med 3ord antingen med mellanslag eller med , tecken");
-                string input = Console.ReadLine()!;
-                string[] seperators = { " ", "," };
-                string[] words = input.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
 
-                for (int i = 0; i < words.Length; i++)
+
+                Console.WriteLine("skriv in en mening med 3ord antingen med mellanslag eller med , tecken");
+                string input = Console.ReadLine()!;  // Läser inmatningen från användaren.
+                string[] seperators = { " ", "," };  // Definierar en array av tecken som används som separatorer för att dela upp inmatningen.
+                string[] words = input.Split(seperators, StringSplitOptions.RemoveEmptyEntries); // Delar upp inmatningen baserat på de definierade separatorerna och tar bort eventuella tomma delsträngar.
+
+                for (int i = 0; i < words.Length; i++)  // Loopar igenom varje ord i den delade inmatningen.
                 {
-                    if ((i + 1) % 3 == 0) // Kontrollera om det är ett tredje ord
+                    // Kontrollerar om det är det tredje ordet (baserat på att indexet börjar från 0).
+                    if ((i + 1) % 3 == 0) // Om resten vid division med 3 är 0 (vilket innebär var tredje ord)
                     {
-                        Console.WriteLine($"<{words[i]}>");
+                        Console.WriteLine($"<{words[i]}>");  // Skriver ut det tredje ordet med < och > runt det för att markera det.
                     }
                 }
             }
