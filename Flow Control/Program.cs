@@ -92,23 +92,28 @@
                 if (age <= 20)
                 {
 
-                    if (age == 20)
-                    {
-                        price = 80;
-                    }
-                    else if (age >= 13)
-                    {
-                        price = 50;
-                    }
-                    else
+                    if (age <= 5)
                     {
                         price = 0;
                     }
+                    if (age >= 6 && age <= 13)
+                    {
+                        price = 50;
+                    }
+                    if (age > 13 && age <= 20)
+                    {
+                        price = 80;
+                    }
                 }
-                else if (age >= 65)
+                else if (age >= 65 && age < 100)
                 {
                     price = 90;
                 }
+                else if (age >= 100)
+                {
+                    price = 0;
+                }
+
                 else
                 {
                     price = 120;
@@ -127,7 +132,7 @@
                     {
                         Console.WriteLine($"ditt pris är ungdomspris {price} kr ");
                     }
-                    else if (age >= 5)
+                    else if (age > 5)
                     {
                         Console.WriteLine($"ditt pris är {price} kr");
                     }
@@ -137,6 +142,10 @@
                     }
                 }
                 else if (age >= 65)
+                {
+                    Console.WriteLine($"Grattis du är pensionär och får betala {price} kr");
+                }
+                else if (age > 100)
                 {
                     Console.WriteLine($"Grattis du är pensionär och får betala {price} kr");
                 }
